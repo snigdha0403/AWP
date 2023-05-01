@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Table</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Number Table</h1>
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" name="number">
+    <button onclick="displayTable()">Display Table</button>
+    <br><br>
+    <div id="table"></div>
+    <script>
+    function displayTable() {
+    var number = $("#number").val();
+    if (number === "") {
+        alert("Please enter a number.");
+    } else {
+        $.ajax({
+            type: "GET",
+            url: "table.php",
+            data: {number: number},
+            success: function(result) {
+                $("#table").html(result);
+            }
+        });
+    }
+}
+</script>
+</body>
+</html>
+
